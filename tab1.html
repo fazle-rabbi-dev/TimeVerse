@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Aesthetic Clock</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap"
+			rel="stylesheet" />
+		<style>
+			body {
+				margin: 0;
+				height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+				font-family: "Space Grotesk", sans-serif;
+			}
+			.clock-container {
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 16px;
+				backdrop-filter: blur(20px);
+				padding: 40px 60px;
+				text-align: center;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+			}
+			#date {
+				color: #f0f0f0;
+				font-size: 1.5rem;
+				margin-bottom: 20px;
+				font-weight: 400;
+			}
+			#clock {
+				color: #ffffff;
+				font-size: 5rem;
+				letter-spacing: 2px;
+				font-weight: 700;
+				text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+			}
+			@media (max-width: 600px) {
+				#clock {
+					font-size: 3rem;
+				}
+				#date {
+					font-size: 1.2rem;
+				}
+				.clock-container {
+					padding: 30px 20px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="clock-container">
+			<div id="date"></div>
+			<div id="clock"></div>
+		</div>
+
+		<script>
+			function updateClock() {
+				const now = new Date();
+				const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+				document.getElementById("date").textContent = now.toLocaleDateString("en-US", options);
+
+				let hour = now.getHours();
+				const minute = now.getMinutes();
+				const second = now.getSeconds();
+				const ampm = hour >= 12 ? "PM" : "AM";
+
+				hour = hour % 12;
+				hour = hour ? hour : 12;
+
+				const formattedTime =
+					String(hour).padStart(2, "0") +
+					":" +
+					String(minute).padStart(2, "0") +
+					":" +
+					String(second).padStart(2, "0") +
+					" " +
+					ampm;
+
+				document.getElementById("clock").textContent = formattedTime;
+			}
+
+			updateClock();
+			setInterval(updateClock, 1000);
+		</script>
+	</body>
+</html>

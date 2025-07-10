@@ -1,0 +1,13 @@
+{
+	"manifest_version": 3,
+	"name": "Mini Momentum Clone",
+	"version": "1.0",
+	"description": "A clean new tab page with clock, quote, and background image change.",
+	"chrome_url_overrides": {
+		"newtab": "newtab.html"
+	},
+	"permissions": [],
+	"icons": {
+		"128": "icon.jpeg"
+	}
+}
